@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model WorkingMemory {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId          String?  @map("user_id")
+  sessionId       String   @map("session_id")
+  role            String   @db.String(32)
+  content         String
+  topicTag        String?  @map("topic_tag")
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  importanceScore Float?   @default(0.5) @map("importance_score")
+  emotion         String?
+  promoted        Boolean? @default(false)
+
+  @@map("working_memory")
+}
+
+model EpisodicMemory {
+  id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId             String?  @map("user_id")
+  sessionId          String   @map("session_id")
+  content            String
+  significanceScore  Float?   @default(0.5) @map("significance_score")
+  reinforcementCount Int?     @default(0) @map("reinforcement_count")
+  conceptTags        String[] @default([]) @map("concept_tags")
+  promoted           Boolean? @default(false)
+  createdAt          DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  lastAccessedAt     DateTime @default(now()) @map("last_accessed_at") @db.Timestamptz(6)
+  metadata           Json?    @default("{}")
+  importanceScore    Float?   @default(0.5) @map("importance_score")
+  emotion            String?
+
+  @@map("episodic_memory")
+}
+
+model SemanticMemory {
+  id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId             String?  @map("user_id")
+  sessionId          String?  @map("session_id")
+  concept            String
+  content            String
+  significanceScore  Float?   @default(0.5) @map("significance_score")
+  reinforcementCount Int?     @default(0) @map("reinforcement_count")
+  conceptTags        String[] @default([]) @map("concept_tags")
+  sourceEpisodicIds  String[] @default([]) @map("source_episodic_ids") @db.Uuid
+  createdAt          DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  lastAccessedAt     DateTime @default(now()) @map("last_accessed_at") @db.Timestamptz(6)
+  metadata           Json?    @default("{}")
+  importanceScore    Float?   @default(0.5) @map("importance_score")
+  emotion            String?
+
+  @@map("semantic_memory")
+}
+
+model ReflectionMemory {
+  id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId            String?   @map("user_id")
+  sessionId         String?   @map("session_id")
+  insight           String
+  content           String
+  importanceScore   Float?    @default(0.5) @map("importance_score")
+  emotion           String?
+  conceptTags       String[]  @default([]) @map("concept_tags")
+  sourceEpisodicIds String[]  @default([]) @map("source_episodic_ids") @db.Uuid
+  createdAt         DateTime? @default(dbgenerated("clock_timestamp()")) @map("created_at") @db.Timestamptz(6)
+  lastAccessedAt    DateTime? @default(dbgenerated("clock_timestamp()")) @map("last_accessed_at") @db.Timestamptz(6)
+  metadata          Json?     @default("{}")
+
+  @@map("reflection_memory")
+}
+
+model ArchiveLog {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  originalMemoryId String   @map("original_memory_id") @db.Uuid
+  sourceTable      String   @map("source_table") @db.String(64)
+  sessionId        String?  @map("session_id")
+  s3ObjectKey      String   @map("s3_object_key")
+  archivedAt       DateTime @default(now()) @map("archived_at") @db.Timestamptz(6)
+  metadata         Json?    @default("{}")
+
+  @@map("archive_log")
+}
