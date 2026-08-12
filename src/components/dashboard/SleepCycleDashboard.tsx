@@ -78,7 +78,7 @@ export const SleepCycleDashboard: React.FC<SleepCycleDashboardProps> = ({ sessio
           <span className="text-3xl font-extrabold text-white font-mono">
             {lastResult ? lastResult.archivedCount : 0}
           </span>
-          <span className="text-[11px] text-slate-400">Offloaded to AWS S3 Vault</span>
+          <span className="text-[11px] text-slate-400">Offloaded to Cold Storage Vault</span>
         </div>
 
         {/* Metric 3: Reinforced Semantic Memories Count */}
@@ -108,7 +108,7 @@ export const SleepCycleDashboard: React.FC<SleepCycleDashboardProps> = ({ sessio
             ))}
             {lastResult.archiveLogsCreated.map((a, idx) => (
               <div key={idx} className="p-3 rounded-lg bg-blue-950/40 border border-blue-900/60 flex flex-col gap-1">
-                <span className="text-blue-300 font-bold">AWS S3 Cold Archive #{idx + 1}</span>
+                <span className="text-blue-300 font-bold">Cold Vault Archive #{idx + 1}</span>
                 <span className="text-slate-400 text-[11px]">Object Key: {a.s3ObjectKey}</span>
               </div>
             ))}

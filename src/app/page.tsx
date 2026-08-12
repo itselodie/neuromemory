@@ -8,7 +8,7 @@ import { MemoryTimeline } from '@/components/dashboard/MemoryTimeline';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'chat' | 'dashboard' | 'sleep' | 'timeline'>('chat');
-  const demoSessionId = 'session_hackathon_demo';
+  const demoSessionId = 'session_demo_default';
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 flex flex-col p-4 md:p-8 selection:bg-indigo-500 selection:text-white">
@@ -24,14 +24,14 @@ export default function Home() {
             <h1 className="text-xl font-bold tracking-tight text-white m-0 flex items-center gap-2">
               NeuroMemory
               <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300">
-                Hackathon Demo
+                Cognitive Memory Engine
               </span>
             </h1>
-            <p className="text-xs text-slate-400 m-0">CockroachDB × AWS Agentic Memory Engine</p>
+            <p className="text-xs text-slate-400 m-0">Autonomous 3-Tier Cognitive AI Architecture</p>
           </div>
         </div>
 
-        {/* Navigation Tabs for Hackathon Judges */}
+        {/* Navigation Tabs */}
         <div className="flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800 shadow-xl overflow-x-auto max-w-full">
           <button
             onClick={() => setActiveTab('chat')}

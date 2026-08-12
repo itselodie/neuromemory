@@ -105,7 +105,28 @@ export async function generateReflections(
       const contentsSummary = memories.map((m) => m.content).join(' | ');
       const content = `Reflection on ${tag}: ${contentsSummary}`;
 
-      // 4. Store result in ReflectionMemory with metadata referencing sourceEpisodicIds
+      // 4. Check for existing ReflectionMemory for this session and tag (idempotency check)
+      const existingReflection = await tx.reflectionMemory.findFirst({
+        where: {
+          sessionId,
+          conceptTags: { has: tag },
+        },
+        orderBy: { createdAt: 'desc' },
+      });
+
+      if (existingReflection) {
+        const existingIds = existingReflection.sourceEpisodicIds || [];
+        const isMatch =
+          sourceEpisodicIds.length === existingIds.length &&
+          sourceEpisodicIds.every((id) => existingIds.includes(id));
+
+        if (isMatch) {
+          createdReflections.push(existingReflection);
+          continue;
+        }
+      }
+
+      // Store result in ReflectionMemory with metadata referencing sourceEpisodicIds
       const reflection = await tx.reflectionMemory.create({
         data: {
           userId,

@@ -63,20 +63,20 @@ export const MemoryTimeline: React.FC = () => {
         <div className="p-4 rounded-xl bg-slate-900/80 border border-blue-500/40 flex flex-col gap-2 relative group hover:border-blue-500 transition-all">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-blue-400">4. Archived Vault</span>
-            <span className="px-1.5 py-0.5 rounded text-[9px] bg-blue-950 text-blue-300 font-mono">AWS S3</span>
+            <span className="px-1.5 py-0.5 rounded text-[9px] bg-blue-950 text-blue-300 font-mono">Cold Vault</span>
           </div>
           <p className="text-xs text-slate-300 font-mono">Offloaded cold storage</p>
           <div className="mt-auto pt-3 border-t border-slate-800 text-[10px] text-slate-400 space-y-1 font-mono">
             <div>Reason: low_significance_decay</div>
             <div>Target: archive_log</div>
-            <div>Key: s3://neuromemory/...</div>
+            <div>Key: archive/neuromemory/...</div>
           </div>
         </div>
       </div>
 
       {/* Detailed Debug Metrics Panel */}
       <div className="flex-1 border border-slate-800 rounded-xl p-5 bg-slate-950/60 overflow-y-auto custom-scrollbar flex flex-col gap-4">
-        <h3 className="text-xs font-bold text-slate-300 m-0 uppercase tracking-wider">🔬 Hackathon Debug Specification Panel</h3>
+        <h3 className="text-xs font-bold text-slate-300 m-0 uppercase tracking-wider">🔬 Cognitive Memory Architecture Specification Panel</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
           {/* Debug Card 1 */}
@@ -99,7 +99,7 @@ export const MemoryTimeline: React.FC = () => {
           <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col gap-2">
             <span className="text-cyan-400 font-bold">Vector Similarity Search</span>
             <p className="text-slate-300 text-[11px] leading-relaxed m-0">
-              CockroachDB Cosine Distance: (1 - (embedding &lt;=&gt; query_vector)) over VECTOR(1536) columns
+              Cosine Similarity Search: (1 - (embedding &lt;=&gt; query_vector)) over VECTOR(1536) columns
             </p>
           </div>
 
@@ -107,7 +107,7 @@ export const MemoryTimeline: React.FC = () => {
           <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col gap-2">
             <span className="text-blue-400 font-bold">Cold Storage Decay & Archiving</span>
             <p className="text-slate-300 text-[11px] leading-relaxed m-0">
-              Low significance memories offloaded to AWS S3 and tracked in CockroachDB archive_log table
+              Low significance memories offloaded to cold storage vault and tracked in archive_log table
             </p>
           </div>
         </div>

@@ -7,6 +7,12 @@
  * 4. archive_log     : Offloaded cold storage tracking for AWS S3
  */
 
+export interface RecalledMemoryMetadata {
+  workingCount: number;
+  reflectionTags: string[];
+  semanticConcepts: string[];
+}
+
 /** 1. Working Memory item representation */
 export interface WorkingMemoryItem {
   id: string;
@@ -16,6 +22,7 @@ export interface WorkingMemoryItem {
   content: string;
   topicTag?: string;
   createdAt: Date;
+  recalledMemory?: RecalledMemoryMetadata;
 }
 
 /** Input DTO for adding to working memory */

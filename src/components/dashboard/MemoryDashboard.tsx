@@ -52,7 +52,7 @@ export const MemoryDashboard: React.FC<MemoryDashboardProps> = ({ sessionId }) =
           <h2 className="text-base font-bold text-slate-100 flex items-center gap-2 m-0">
             📊 Live Memory Dashboard
           </h2>
-          <p className="text-xs text-slate-400 m-0">Inspect real-time 3-tier memory states in CockroachDB</p>
+          <p className="text-xs text-slate-400 m-0">Inspect real-time 3-tier memory states</p>
         </div>
 
         <div className="flex items-center gap-2 bg-slate-950/60 p-1 rounded-xl border border-slate-800">
@@ -94,7 +94,7 @@ export const MemoryDashboard: React.FC<MemoryDashboardProps> = ({ sessionId }) =
         {isLoading ? (
           <div className="flex flex-col items-center justify-center h-full text-slate-400 text-sm gap-2">
             <div className="w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-            <span>Fetching CockroachDB memory panels...</span>
+            <span>Fetching cognitive memory panels...</span>
           </div>
         ) : activeTab === 'working' ? (
           /* Working Memory Panel */

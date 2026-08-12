@@ -100,7 +100,25 @@ export async function buildSemanticMemory(
       });
 
       if (existingSemantic) {
-        // 5a. Update existing SemanticMemory: increment reinforcementCount, combine source IDs & content
+        // 5a. Update existing SemanticMemory: check for uncollected reflections (idempotency check)
+        const existingMetadata =
+          typeof existingSemantic.metadata === 'object' && existingSemantic.metadata !== null
+            ? (existingSemantic.metadata as Record<string, any>)
+            : {};
+
+        const previousReflectionIds: string[] = (existingMetadata.sourceReflectionIds as string[]) || [];
+        const uncollectedReflections = conceptReflections.filter((r) => !previousReflectionIds.includes(r.id));
+
+        if (uncollectedReflections.length === 0) {
+          // All reflections for this concept group have already been consolidated
+          results.push(existingSemantic);
+          continue;
+        }
+
+        const uncollectedMergedContent = uncollectedReflections
+          .map((r) => `${r.insight} ${r.content}`)
+          .join(' | ');
+
         const updatedSourceEpisodic = Array.from(
           new Set([...(existingSemantic.sourceEpisodicIds ?? []), ...sourceEpisodicIds])
         );
@@ -109,19 +127,14 @@ export async function buildSemanticMemory(
           new Set([...(existingSemantic.conceptTags ?? []), ...conceptTags])
         );
 
-        const updatedReinforcement = (existingSemantic.reinforcementCount ?? 0) + conceptReflections.length;
-        const newContent = `${existingSemantic.content} | ${mergedContent}`;
-
-        const existingMetadata =
-          typeof existingSemantic.metadata === 'object' && existingSemantic.metadata !== null
-            ? existingSemantic.metadata
-            : {};
+        const updatedReinforcement = (existingSemantic.reinforcementCount ?? 0) + uncollectedReflections.length;
+        const newContent = `${existingSemantic.content} | ${uncollectedMergedContent}`;
 
         const updatedMetadata = {
           ...existingMetadata,
           sourceReflectionIds: Array.from(
             new Set([
-              ...((existingMetadata as any).sourceReflectionIds ?? []),
+              ...previousReflectionIds,
               ...sourceReflectionIds,
             ])
           ),
@@ -135,7 +148,7 @@ export async function buildSemanticMemory(
           data: {
             content: newContent,
             reinforcementCount: updatedReinforcement,
-            significanceScore: Math.min(1.0, (existingSemantic.significanceScore ?? 0.5) + 0.1 * conceptReflections.length),
+            significanceScore: Math.min(1.0, (existingSemantic.significanceScore ?? 0.5) + 0.1 * uncollectedReflections.length),
             importanceScore: avgImportance,
             conceptTags: updatedConceptTags,
             sourceEpisodicIds: updatedSourceEpisodic,
