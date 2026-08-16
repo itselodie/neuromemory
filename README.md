@@ -1,153 +1,467 @@
 # 🧠 NeuroMemory
 
-> **An autonomous 3-tier cognitive memory architecture for AI
-> assistants.**
+> **An autonomous cognitive memory architecture for persistent AI assistants.**
 
-NeuroMemory is an experimental AI memory engine designed to give an
-assistant more persistent and structured memory than a simple chat
-history.
+NeuroMemory is an experimental AI memory system designed to give AI assistants structured, persistent memory instead of relying only on a temporary conversation window.
 
-Instead of treating every conversation as isolated context, NeuroMemory
-organizes information into different memory layers and uses an
-autonomous cycle to store, recall, reflect on, and consolidate
-information over time.
+Rather than treating every interaction as isolated chat history, NeuroMemory organizes information into multiple memory layers and provides a cognitive cycle for storing, promoting, reflecting on, and consolidating information over time.
 
-## ✨ What makes NeuroMemory different?
+---
 
-Most AI chat applications rely heavily on the current conversation
-window. NeuroMemory explores a different approach:
+## ✨ What Makes NeuroMemory Different?
 
-**Conversation → Working Memory → Reflection → Semantic Memory**
+Most AI chat applications primarily rely on the current conversation context.
 
-The goal is to make memory a process rather than just a database lookup.
+NeuroMemory explores a different approach:
 
-### 🧩 Three-Tier Cognitive Memory
-
-  -----------------------------------------------------------------------
-  Layer                               Purpose
-  ----------------------------------- -----------------------------------
-  🧠 **Working Memory**               Stores recent and active
-                                      conversation context
-
-  ⚡ **Reflection Memory**            Captures recurring patterns,
-                                      insights, and useful reflections
-
-  💎 **Semantic Memory**              Stores consolidated knowledge and
-                                      longer-term concepts
-  -----------------------------------------------------------------------
-
-NeuroMemory also includes a **Sleep Cycle** concept for background
-consolidation and a **Timeline & Debug** interface for observing how
-information moves through the system.
-
-## 🚀 Features
-
--   💬 **Context-aware AI chat**
--   🧠 **Working Memory retrieval**
--   ⚡ **Reflection Memory**
--   💎 **Semantic Memory**
--   🔄 **Autonomous memory consolidation**
--   🌙 **Sleep Cycle simulation**
--   🕒 **Memory timeline and debugging**
--   📊 **Memory inspection panels**
--   🗄️ **Persistent database-backed memory**
--   ☁️ **Production deployment on Vercel**
--   🤖 **Gemini-powered AI responses**
-
-## 🏗️ Architecture
-
-``` text
-                    ┌─────────────────────┐
-                    │       User          │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │    Next.js App      │
-                    │     Live Chat       │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │    /api/chat        │
-                    │   Memory Orchestrator│
-                    └──────────┬──────────┘
-                               │
-                 ┌─────────────┼─────────────┐
-                 ▼             ▼             ▼
-        ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
-        │   Working   │ │ Reflection  │ │  Semantic   │
-        │   Memory    │ │   Memory    │ │   Memory    │
-        └──────┬──────┘ └──────┬──────┘ └──────┬──────┘
-               │               │               │
-               └───────────────┼───────────────┘
-                               ▼
-                    ┌─────────────────────┐
-                    │      Prisma         │
-                    │      ORM            │
-                    └──────────┬──────────┘
-                               ▼
-                    ┌─────────────────────┐
-                    │     CockroachDB     │
-                    │   Persistent Store  │
-                    └─────────────────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │   Gemini API        │
-                    │   AI Generation     │
-                    └─────────────────────┘
+```text
+Conversation
+     ↓
+Working Memory
+     ↓
+Episodic Memory
+     ↓
+Reflection Memory
+     ↓
+Semantic Memory
+     ↓
+Long-term Consolidated Knowledge
 ```
 
-## 🛠️ Tech Stack
+The goal is to make memory a **process**, rather than simply a database lookup.
 
--   **Frontend:** Next.js, React, Tailwind CSS
--   **Backend:** Next.js API Routes
--   **AI:** Google Gemini
--   **Database:** CockroachDB
--   **ORM:** Prisma
--   **Deployment:** Vercel
--   **Language:** TypeScript
+---
 
-## 📁 Project Structure
+# 🧠 Cognitive Memory Architecture
 
-``` text
-neuroMemory/
-├── app/
-│   ├── api/
-│   │   └── chat/
-│   ├── components/
+NeuroMemory uses multiple memory layers with different purposes.
+
+| Memory Layer             | Purpose                                                 |
+| ------------------------ | ------------------------------------------------------- |
+| 🧠 **Working Memory**    | Stores recent and active conversation context           |
+| ⚡ **Episodic Memory**    | Stores significant individual experiences and events    |
+| 🔍 **Reflection Memory** | Captures recurring patterns, insights, and observations |
+| 💎 **Semantic Memory**   | Stores consolidated concepts and longer-term knowledge  |
+| 🗄️ **Archive Log**      | Maintains archived memory-related records               |
+
+The system can automatically move information through the memory architecture using its cognitive cycle.
+
+---
+
+# 🔄 Autonomous Cognitive Cycle
+
+NeuroMemory includes an automated three-stage cognitive cycle:
+
+```text
+┌──────────────────────┐
+│   Working Memory     │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│  Episodic Promotion  │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Reflection Synthesis │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Semantic Consolidation│
+└──────────────────────┘
+```
+
+The cycle is designed to transform short-term conversational information into increasingly consolidated representations.
+
+The system can automatically trigger this cycle after a configurable number of conversation turns.
+
+---
+
+# 🚀 Features
+
+* 💬 Context-aware AI chat
+* 🧠 Persistent Working Memory
+* ⚡ Episodic Memory storage
+* 🔍 Reflection Memory
+* 💎 Semantic Memory
+* 🔄 Autonomous memory consolidation
+* 🌙 Sleep Cycle / cognitive-cycle interface
+* 🕒 Memory timeline and debugging interface
+* 📊 Memory inspection panels
+* 🗄️ CockroachDB-backed persistence
+* 🤖 Gemini-powered AI responses
+* 🧩 MCP-based CockroachDB inspection during development
+* ☁️ Vercel deployment
+* 🔢 1536-dimensional embedding support for episodic memories
+* 🛡️ Environment-variable based secret management
+
+---
+
+# 🏗️ Architecture
+
+```text
+                         ┌──────────────────┐
+                         │      User        │
+                         └────────┬─────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │    Next.js App   │
+                         │   Chat Interface │
+                         └────────┬─────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │    /api/chat     │
+                         │ AI Orchestrator  │
+                         └────────┬─────────┘
+                                  │
+                    ┌─────────────┼─────────────┐
+                    │             │             │
+                    ▼             ▼             ▼
+             ┌────────────┐ ┌────────────┐ ┌────────────┐
+             │  Working   │ │ Reflection │ │  Semantic  │
+             │  Memory    │ │  Memory    │ │  Memory    │
+             └─────┬──────┘ └─────▲──────┘ └─────▲──────┘
+                   │              │              │
+                   ▼              │              │
+             ┌────────────┐       │              │
+             │  Episodic  │───────┘              │
+             │  Memory    │                      │
+             └─────┬──────┘                      │
+                   │                             │
+                   └──────────────┬──────────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │     Prisma       │
+                         │       ORM        │
+                         └────────┬─────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │   CockroachDB    │
+                         │ Persistent Store │
+                         └──────────────────┘
+
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │   Gemini API     │
+                         │  AI Generation   │
+                         └──────────────────┘
+```
+
+---
+
+# 🗃️ CockroachDB Integration
+
+CockroachDB acts as the persistent database layer for NeuroMemory.
+
+The project currently contains dedicated tables for the different memory layers:
+
+```text
+working_memory
+episodic_memory
+reflection_memory
+semantic_memory
+archive_log
+```
+
+This allows different types of memory to be stored and inspected independently.
+
+### CockroachDB is responsible for:
+
+* Persistent memory storage
+* Conversation history
+* Episodic memory records
+* Reflection records
+* Semantic concepts
+* Memory metadata
+* Importance/significance scores
+* Promotion state
+* Memory timestamps
+
+The project also supports vector embeddings for episodic memory, allowing the architecture to be extended toward embedding-based semantic retrieval.
+
+---
+
+# 🧩 CockroachDB MCP Integration
+
+During development, NeuroMemory's CockroachDB database was connected to the **CockroachDB MCP server through Cursor**.
+
+The MCP connection was used to inspect the live database and verify the memory architecture directly.
+
+For example, the database was inspected to verify the presence of:
+
+```text
+archive_log
+episodic_memory
+reflection_memory
+semantic_memory
+working_memory
+```
+
+This made it possible to inspect the actual database structure and memory records while developing and debugging NeuroMemory.
+
+> **Note:** The MCP configuration is a development tool and is not part of the NeuroMemory application runtime.
+
+---
+
+# 🤖 AI Layer
+
+NeuroMemory uses Google Gemini for AI response generation.
+
+The AI orchestrator:
+
+1. Receives a user message.
+2. Stores the user turn.
+3. Retrieves available memory.
+4. Builds a context-augmented prompt.
+5. Sends the prompt to Gemini.
+6. Stores the assistant response.
+7. Triggers the cognitive memory cycle when the configured interval is reached.
+
+The system therefore combines **LLM reasoning with structured persistent memory**.
+
+---
+
+# ☁️ AWS Integration
+
+NeuroMemory includes an AWS Bedrock integration for embedding generation.
+
+The Bedrock wrapper supports:
+
+* Amazon Titan embedding models
+* 1536-dimensional embeddings
+* Normalized embedding vectors
+* Runtime AWS credential configuration
+
+For local development, the implementation also contains a deterministic embedding fallback when AWS credentials are unavailable.
+
+This allows the application to continue running during development without requiring AWS credentials.
+
+```text
+Text
+ │
+ ▼
+AWS Bedrock Embedding
+ │
+ ▼
+1536-dimensional vector
+ │
+ ▼
+Episodic Memory
+```
+
+---
+
+# 🧠 Episodic Memory Pipeline
+
+When a conversation turn is processed for episodic memory, NeuroMemory:
+
+```text
+Conversation Turn
+       │
+       ▼
+Significance Scoring
+       │
+       ▼
+Embedding Generation
+       │
+       ▼
+Concept Tag Extraction
+       │
+       ▼
+Episodic Memory Storage
+```
+
+Each episodic memory record can contain information such as:
+
+* User ID
+* Session ID
+* Content
+* Embedding
+* Significance score
+* Reinforcement count
+* Concept tags
+* Promotion state
+* Creation timestamp
+* Last-access timestamp
+* Metadata
+
+---
+
+# 🔄 Chat Orchestration
+
+The main chat flow is handled by the AI orchestrator.
+
+```text
+User Message
+     │
+     ▼
+Process Conversation Turn
+     │
+     ▼
+Retrieve Memory
+     │
+     ├── Working Memory
+     ├── Reflection Memory
+     └── Semantic Memory
+     │
+     ▼
+Build Context Prompt
+     │
+     ▼
+Gemini
+     │
+     ▼
+Assistant Response
+     │
+     ▼
+Save Assistant Turn
+     │
+     ▼
+Cognitive Cycle
+```
+
+The orchestrator also returns safe metadata about recalled memory without exposing sensitive database information.
+
+---
+
+# 🌙 Cognitive "Sleep Cycle"
+
+NeuroMemory includes a conceptual **Sleep Cycle** inspired by the idea that memory consolidation can occur outside immediate interaction.
+
+Instead of requiring every memory transformation to happen during a single response, the architecture can run a cognitive cycle that processes accumulated information.
+
+```text
+Working Memory
+      ↓
+Episodic Memory
+      ↓
+Reflection Memory
+      ↓
+Semantic Memory
+```
+
+The cycle can be triggered automatically based on the number of conversation turns or manually when required.
+
+---
+
+# 🕒 Timeline & Debugging
+
+NeuroMemory includes interfaces for observing the memory system.
+
+These interfaces help visualize:
+
+* Conversation events
+* Memory records
+* Memory promotion
+* Cognitive cycles
+* Stored concepts
+* Debug information
+
+This makes the internal memory architecture observable rather than treating it as a hidden process.
+
+---
+
+# 🛠️ Tech Stack
+
+### Frontend
+
+* Next.js
+* React
+* Tailwind CSS
+
+### Backend
+
+* Next.js API Routes
+* TypeScript
+
+### AI
+
+* Google Gemini
+* AWS Bedrock integration for embeddings
+
+### Database
+
+* CockroachDB
+* PostgreSQL-compatible SQL
+
+### ORM
+
+* Prisma
+
+### Developer Tools
+
+* Cursor
+* CockroachDB MCP
+
+### Deployment
+
+* Vercel
+
+---
+
+# 📁 Project Structure
+
+```text
+neuromemory/
+├── src/
+│   ├── app/
+│   │   └── api/
+│   │       └── chat/
+│   ├── lib/
+│   │   ├── aiOrchestrator.ts
+│   │   ├── cognitiveCycle.ts
+│   │   ├── memoryManager.ts
+│   │   ├── promotionEngine.ts
+│   │   ├── reflectionEngine.ts
+│   │   ├── semanticEngine.ts
+│   │   ├── aws/
+│   │   │   └── bedrock.ts
+│   │   └── cockroach/
+│   ├── services/
+│   │   ├── episodicMemoryService.ts
+│   │   └── episodicPipeline.ts
 │   └── ...
 ├── prisma/
 │   └── schema.prisma
 ├── public/
 ├── package.json
-├── .env.example
-└── README.md
+├── README.md
+└── .env.example
 ```
 
-> The exact structure may evolve as the project develops.
+> The project structure may evolve as development continues.
 
-## ⚙️ Getting Started
+---
 
-### 1. Clone the repository
+# ⚙️ Getting Started
 
-``` bash
-git clone https://github.com/itselodie/neuromemory.git
+## 1. Clone the repository
+
+Clone the NeuroMemory repository from GitHub and enter the project directory.
+
+```bash
+git clone <repository-url>
 cd neuromemory
 ```
 
-### 2. Install dependencies
+## 2. Install dependencies
 
-``` bash
+```bash
 npm install
 ```
 
-### 3. Configure environment variables
+## 3. Configure environment variables
 
-Create a `.env.local` file:
+Create a `.env.local` file containing the required credentials:
 
-``` env
+```env
 DATABASE_URL="postgresql://YOUR_USER:YOUR_PASSWORD@YOUR_COCKROACHDB_HOST:26257/defaultdb?sslmode=verify-full"
 
 GEMINI_API_KEY="your_gemini_api_key"
@@ -155,137 +469,193 @@ GEMINI_API_KEY="your_gemini_api_key"
 GEMINI_MODEL="your_gemini_model"
 ```
 
-**Never commit your real API keys or database credentials to GitHub.**
+If using AWS Bedrock embeddings, configure the required AWS environment variables as well:
 
-### 4. Generate Prisma Client
+```env
+AWS_REGION="us-east-1"
+AWS_ACCESS_KEY_ID="your_access_key"
+AWS_SECRET_ACCESS_KEY="your_secret_key"
+```
 
-``` bash
+Never commit real API keys, AWS credentials, or database credentials to GitHub.
+
+## 4. Generate Prisma Client
+
+```bash
 npx prisma generate
 ```
 
-### 5. Apply the database schema
+## 5. Apply the database schema
 
-``` bash
+```bash
 npx prisma db push
 ```
 
-### 6. Run the development server
+## 6. Start the development server
 
-``` bash
+```bash
 npm run dev
 ```
 
-Open:
+Then open the local application at:
 
-``` text
+```text
 http://localhost:3000
 ```
 
-## 🌐 Deployment
+---
 
-NeuroMemory is designed to run in production using:
+# 🌐 Deployment
 
-**Vercel + CockroachDB + Gemini**
+NeuroMemory is designed to run using:
 
-For Vercel, configure the same environment variables under the
-appropriate deployment environments:
+```text
+Vercel
+   │
+   ├── Next.js Application
+   │
+   ├── CockroachDB
+   │
+   └── Gemini API
+```
 
-``` text
+The required environment variables should be configured in the Vercel project settings.
+
+```text
 DATABASE_URL
 GEMINI_API_KEY
 GEMINI_MODEL
 ```
 
-Then deploy from the `master` branch.
+AWS credentials and configuration should only be added if the deployed environment is intended to use the live Bedrock integration.
 
-## 🧠 Memory Flow
+The application can then be deployed from the configured Git branch.
 
-A simplified memory cycle looks like this:
+---
 
-``` text
-User message
-     │
-     ▼
-Working Memory
-     │
-     ▼
-AI Response
-     │
-     ▼
-Pattern / Insight Detection
-     │
-     ▼
-Reflection Memory
-     │
-     ▼
-Consolidation
-     │
-     ▼
-Semantic Memory
-```
+# 🔐 Security
 
-This allows the system to move beyond simply remembering the previous
-message and toward building a structured representation of information
-across interactions.
+NeuroMemory uses environment variables for external service credentials.
 
-## 🔬 Why NeuroMemory?
+Sensitive information such as:
+
+* Database passwords
+* Gemini API keys
+* AWS credentials
+* MCP authentication headers
+
+should **never be committed to the repository**.
+
+The Cursor MCP configuration is intentionally kept outside the project repository.
+
+---
+
+# 🧪 Current Status
+
+## Hackathon Prototype — Production Deployed
+
+Currently implemented:
+
+* ✅ AI chat interface
+* ✅ Persistent Working Memory
+* ✅ Episodic Memory architecture
+* ✅ Reflection Memory architecture
+* ✅ Semantic Memory architecture
+* ✅ CockroachDB persistence
+* ✅ Prisma database integration
+* ✅ Memory retrieval
+* ✅ Cognitive memory cycle
+* ✅ Memory promotion pipeline
+* ✅ Memory inspection UI
+* ✅ Sleep Cycle interface
+* ✅ Timeline & Debug interface
+* ✅ Gemini-powered responses
+* ✅ Vercel deployment
+* ✅ CockroachDB MCP development integration
+* ✅ AWS Bedrock embedding integration with local fallback
+
+---
+
+# 🔬 Why NeuroMemory?
 
 Human memory is not a single undifferentiated storage system.
 
 We remember:
 
--   what we are currently thinking about,
--   recurring experiences and patterns,
--   and consolidated knowledge.
+* what we are currently thinking about,
+* experiences that happened,
+* recurring patterns,
+* and consolidated knowledge.
 
-NeuroMemory explores whether a similar layered architecture can make AI
-assistants more context-aware and persistent.
+NeuroMemory explores whether a similar layered architecture can make AI assistants more persistent and context-aware.
 
-The project is an experiment in **agentic memory architecture**,
-combining AI reasoning with structured persistent memory.
+Instead of asking:
 
-## 🧪 Current Status
+> "How much conversation history can an AI remember?"
 
-**Prototype → Production-deployed**
+NeuroMemory explores a different question:
 
-Currently implemented:
+> **"Can an AI decide what information deserves to become memory?"**
 
--   [x] AI chat interface
--   [x] Persistent Working Memory
--   [x] Reflection Memory architecture
--   [x] Semantic Memory architecture
--   [x] Database persistence
--   [x] Memory retrieval
--   [x] Memory inspection UI
--   [x] Sleep Cycle interface
--   [x] Timeline & Debug interface
--   [x] Production deployment
+The project therefore treats memory as an **active cognitive process**, rather than simply storing every previous message.
 
-Future improvements:
+---
 
--   [ ] More advanced memory promotion policies
--   [ ] Improved semantic retrieval
--   [ ] Embedding-based memory search
--   [ ] Automated background consolidation
--   [ ] Memory importance scoring
--   [ ] Long-term evaluation and benchmarking
+# 🎯 Hackathon Context
 
-## 🎯 Hackathon Context
+NeuroMemory was built as an exploration of **agentic memory architecture** and persistent AI systems.
 
-NeuroMemory was built as an exploration of **agentic memory** and
-persistent AI systems, with a focus on creating an architecture where an
-AI agent can decide what information should remain active, what should
-become a reflection, and what should eventually become consolidated
-knowledge.
+The architecture focuses on allowing an AI system to:
 
-## 👩‍💻 Author
+1. Maintain active conversational context.
+2. Identify significant experiences.
+3. Promote important information into episodic memory.
+4. Generate reflections from accumulated experiences.
+5. Consolidate recurring information into semantic memory.
+6. Persist the resulting memory structure in CockroachDB.
 
-**Hira Fatima**\
-Computer Engineering student • AI/ML builder • Research enthusiast •
-Poet
+The project combines:
 
-GitHub: [@itselodie](https://github.com/itselodie)
+**AI reasoning + agentic memory + persistent database infrastructure**
 
-------------------------------------------------------------------------
+into one experimental architecture.
 
-### ⭐ If you find the idea interesting, consider starring the repository!
+---
+
+# 🚧 Future Improvements
+
+Potential future work includes:
+
+* More advanced memory promotion policies
+* Improved semantic retrieval
+* More sophisticated embedding-based search
+* Automated background consolidation
+* More advanced importance scoring
+* Better long-term memory evaluation
+* Memory forgetting and decay mechanisms
+* Large-scale memory benchmarking
+* More sophisticated reflection generation
+
+---
+
+# 👩‍💻 Author
+
+**Hira Fatima**
+
+Computer Engineering Student • AI/ML Builder • Research Enthusiast • Poet
+
+GitHub: **@itselodie**
+
+---
+
+## ⭐ Support
+
+If you find the NeuroMemory architecture interesting, consider starring the repository and exploring the implementation.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+Copyright © 2026 Hira Fatima.
